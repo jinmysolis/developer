@@ -13,5 +13,8 @@ class Product extends Model
        'id','name', 'price', 'marks_id',
     ];
     
-   
+   public function mark()
+   {
+       return $this->hasMany(Mark::class);
+   }
 }

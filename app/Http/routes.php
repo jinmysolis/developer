@@ -19,4 +19,9 @@ Route::get('producto','Producto\ProductoController@index');
 
 Route::resource('marca','Producto\MarcaController');
 
+Route::get('panel','Desktop\AdministratorController@panel');
+Route::get('access','Desktop\AdministratorController@access');
+Route::get('reports','Desktop\AdministratorController@reports');
+
+
 

@@ -12,4 +12,11 @@ class Mark extends Model
     protected $fillable = [
        'id','name'
     ];
+
+public function produt()
+   {
+       return $this->belongsTo(Product::class);
+   }
+
+
 }
