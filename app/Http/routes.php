@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('producto','Producto\ProductoController@index');
+//Route::get('producto','Producto\ProductoController@index');
 
 Route::resource('marca','Producto\MarcaController');
 
@@ -24,6 +24,7 @@ Route::get('access','Desktop\AdministratorController@access');
 Route::get('reports','Desktop\AdministratorController@reports');
 
 Route::get('dashboard','Desktop\DashboardController@index');
-Route::get('product','Producto\ProductoController@index');
+
+Route::resource('product','Producto\ProductoController');
 Route::get('modelweb','Desktop\DashboardController@modelweb');
 

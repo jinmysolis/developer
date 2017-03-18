@@ -16,7 +16,7 @@
           <div class="panel-heading">
              Lista
              <p class="navbar-text navbar-right" style=" margin-top: 1px;">
-                <button type="button" class="btn btn-warning navbar-btn" style="margin-bottom: 1px; margin-top: -5px;margin-right: 8px;padding: 3px 20px;">Nuevo</button>
+                 <button type="button" id="nuevo" name="nuevo"  class="btn btn-warning navbar-btn" style="margin-bottom: 1px; margin-top: -5px;margin-right: 8px;padding: 3px 20px;">Nuevo</button>
              </p>
            </div>
           <div class="panel-body">
@@ -54,6 +54,12 @@
 
      </div>
    </div>
-
+   <script>
+       $("#nuevo").click(function(event)
+       {
+           document.location.href = "{{route('product.create')}}";
+       });
+       
+   </script>
 
 @endsection

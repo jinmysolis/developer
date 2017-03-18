@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Producto;
 
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
+use App\Models\Product\Mark;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,7 @@ class ProductoController extends Controller
         $products= Product::
                 select('products.id','products.name as product','price','marks.name as mark')->join('marks','marks.id','=','products.marks_id')->get();
                 
-        return view('product.product')->with('products',$products);
+        return view('product.index')->with('products',$products);
     }
 
     /**
@@ -30,7 +31,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+      $marks=Mark::lists('name','id')->prepend('Seleccioname la Marca');
+      return view('product.create')->with('marks',$marks);;
     }
 
     /**
@@ -41,7 +43,8 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
+        return redirect()->route('product.index');
     }
 
     /**
