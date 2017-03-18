@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Producto;
 
 use Illuminate\Http\Request;
+use App\Models\Product\Product;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return "hola";
+        $products= Product::
+                select('products.id','products.name as product','price','marks.name as mark')->join('marks','marks.id','=','products.marks_id')->get();
+                
+        return view('product.product')->with('products',$products);
     }
 
     /**
