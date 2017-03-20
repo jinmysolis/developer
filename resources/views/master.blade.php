@@ -39,8 +39,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Escritorio</a></li>
-            <li><a href="#">Productos</a></li>
-            <li><a href="#">Marcas</a></li>
+            <li><a href="product">Productos</a></li>
+            <li><a href="modelweb">Marcas</a></li>
           </ul>
 
         </div><!--/.nav-collapse -->
@@ -50,7 +50,6 @@
 
 
     <div class="container">
-      @include('partials.message')
       @yield('content')
 
 

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Mark;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Pagination;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -20,7 +21,7 @@ class ProductoController extends Controller
     public function index()
     {
         $products= Product::
-                select('products.id','products.name as product','price','marks.name as mark')->join('marks','marks.id','=','products.marks_id')->get();
+                select('products.id','products.name as product','price','marks.name as mark')->join('marks','marks.id','=','products.marks_id')->paginate(2);
                 
         return view('product.index')->with('products',$products);
     }
@@ -45,6 +46,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         Product::create($request->all());
+        Session::flash('save','Se ha creado correctamente');
         return redirect()->route('product.index');
     }
 
@@ -86,7 +88,7 @@ class ProductoController extends Controller
         $products= Product::FindOrFail($id);
         $input = $request->all();
         $products->fill($input)->save();
-        
+        Session::flash('update','Se ha actualizado correctamente');
         return redirect()->route('product.index');
     }
 
@@ -100,7 +102,7 @@ class ProductoController extends Controller
     {
         $products= Product::FindOrFail($id);
         $products->delete();
-        
+          Session::flash('delete','Se ha borrado correctamente');
         return redirect()->route('product.index');
     }
 }
