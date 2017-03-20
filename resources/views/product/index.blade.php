@@ -37,8 +37,8 @@
                      <td>{{$product->price}}</td>
                      <td>{{$product->mark}}</td>
                      
-                     <td > <a href="#" class="btn btn-danger glyphicon glyphicon-refresh"></a> 
-                      <a href="#" onclick="return confirm('Seguro desea eliminar')"class="btn btn-warning glyphicon glyphicon-trash"></a>
+                     <td > <a href="{{route('product.edit',$product->id)}}" class="btn btn-danger glyphicon glyphicon-refresh"></a> 
+                           <a href="{{route('product.show',$product->id)}}" class="btn btn-warning glyphicon glyphicon-trash"></a>
                      </td>
                   </tr>
                  @endforeach

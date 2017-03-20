@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Producto;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Mark;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -55,7 +56,8 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+         $products = Product::FindOrFail($id);
+         return view('product.show')->with('products',$products);
     }
 
     /**
@@ -66,7 +68,10 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+         $marks=Mark::lists('name','id')->prepend('Seleccioname la Marca');
+         $products = Product::FindOrFail($id);
+         
+         return view('product.edit', array('products'=>$products,'marks'=>$marks));
     }
 
     /**
@@ -78,7 +83,11 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $products= Product::FindOrFail($id);
+        $input = $request->all();
+        $products->fill($input)->save();
+        
+        return redirect()->route('product.index');
     }
 
     /**
@@ -89,6 +98,9 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $products= Product::FindOrFail($id);
+        $products->delete();
+        
+        return redirect()->route('product.index');
     }
 }
